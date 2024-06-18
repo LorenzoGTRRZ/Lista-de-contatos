@@ -1,7 +1,27 @@
+import Contato from '../../components/Tarefa'
+import { Container } from './styled'
+
 const ListaDeContatos = () => (
-  <main>
+  <Container>
     <p>2 contatos marcados como: &quot;categoria&ldquo; e &quot;termo&ldquo;</p>
-  </main>
+    <ul>
+      <li>
+        <Contato />
+      </li>
+      <li>
+        <Contato />
+      </li>
+      <li>
+        <Contato />
+      </li>
+      <li>
+        <Contato />
+      </li>
+      <li>
+        <Contato />
+      </li>
+    </ul>
+  </Container>
 )
 
 export default ListaDeContatos
