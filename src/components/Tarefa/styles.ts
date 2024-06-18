@@ -14,7 +14,7 @@ export const Titulo = styled.h3`
   margin-bottom: 16px;
 `
 
-export const Descricao = styled.textarea`
+export const Nome = styled.textarea`
   color: #8b8b8b;
   font-size: 14px;
   line-height: 24px;
@@ -25,6 +25,39 @@ export const Descricao = styled.textarea`
   resize: none;
   border: none;
   background-color: transparent;
+`
+
+export const Email = styled.textarea`
+  color: #8b8b8b;
+  font-size: 14px;
+  line-height: 24px;
+  font-family: 'Roboto Mono', monospace;
+  width: 300px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  resize: none;
+  border: none;
+  background-color: transparent;
+`
+
+export const Numero = styled.textarea`
+  color: #8b8b8b;
+  font-size: 14px;
+  line-height: 24px;
+  font-family: 'Roboto Mono', monospace;
+  width: 300px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  resize: none;
+  border: none;
+  background-color: transparent;
+`
+
+export const Tag = styled.span`
+  padding: 4px 8px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 10px;
 `
 
 export const BarraAcoes = styled.div`
