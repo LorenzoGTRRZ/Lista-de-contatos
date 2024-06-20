@@ -1,4 +1,11 @@
 import styled from 'styled-components'
+import variaveis from '../../styles/variaveis'
+
+import * as enums from '../../utils/enums/Contato'
+
+type TagProps = {
+  categoria?: enums.Categoria
+}
 
 export const Card = styled.div`
   background-color: #fcfcfc;
@@ -76,4 +83,11 @@ export const Botao = styled.button`
   border-radius: 8px;
   margin-right: 8px;
   margin-top: 8px;
+`
+export const BotaoSalvar = styled(Botao)`
+  background-color: ${variaveis.verde};
+`
+
+export const BotaoCancelarRemover = styled(Botao)`
+  background-color: ${variaveis.vermelho};
 `
