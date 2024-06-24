@@ -5,6 +5,16 @@ import * as enums from '../../utils/enums/Contato'
 
 type TagProps = {
   categoria?: enums.Categoria
+  parametro: 'categoria'
+}
+
+function retornaCorDeFundo(props: TagProps): string {
+  if (props.parametro === 'categoria') {
+    if (props.categoria === enums.Categoria.FAMILIA) return variaveis.vermelho
+    if (props.categoria === enums.Categoria.TRABALHO) return variaveis.amarelo2
+    if (props.categoria === enums.Categoria.FAVORITO) return variaveis.verde
+  }
+  return '#ccc'
 }
 
 export const Card = styled.div`
@@ -19,6 +29,17 @@ export const Titulo = styled.h3`
   font-size: 18px;
   font-weight: bold;
   margin-bottom: 16px;
+`
+
+export const Tag = styled.span<TagProps>`
+  padding: 4px 8px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 10px;
+  background-color: ${(props) => retornaCorDeFundo(props)};
+  border-radius: 8px;
+  margin-right: 16px;
+  display: inline-block;
 `
 
 export const Nome = styled.textarea`
@@ -58,13 +79,6 @@ export const Numero = styled.textarea`
   resize: none;
   border: none;
   background-color: transparent;
-`
-
-export const Tag = styled.span`
-  padding: 4px 8px;
-  color: #fff;
-  font-weight: bold;
-  font-size: 10px;
 `
 
 export const BarraAcoes = styled.div`
