@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import Contato from '../../models/Contatos'
 import * as enums from '../../utils/enums/Contato'
+import { Informacao } from '../../styles'
 
 type ContatosState = {
   itens: Contato[]
@@ -55,6 +56,19 @@ const contatosSlice = createSlice({
         state.itens[indexDoContato] = action.payload
       }
       /* contatoParaEditar = action.payload */
+    },
+    cadastrar: (state, action: PayloadAction<Contato>) => {
+      const contatoJaExiste = state.itens.find(
+        (contato) =>
+          contato.categoria.toLowerCase() ===
+          action.payload.categoria.toLowerCase()
+      )
+
+      if (contatoJaExiste) {
+        alert('já existe um contato com esse nome')
+      } else {
+        state.itens.push(action.payload)
+      }
     }
   }
 })
