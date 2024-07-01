@@ -6,6 +6,7 @@ class Contato {
   numero: string
   email: string
   id: number
+  informacao: any
 
   constructor(
     nome: string,

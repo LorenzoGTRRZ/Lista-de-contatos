@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import Contato from '../../models/Contatos'
 import * as enums from '../../utils/enums/Contato'
-import { Informacao } from '../../styles'
 
 type ContatosState = {
   itens: Contato[]
@@ -13,28 +12,32 @@ const initialState: ContatosState = {
       nome: 'Lorenzo Thiago Pereira Gutierrez',
       categoria: enums.Categoria.FAVORITO,
       email: 'Lorenzoplaypereira@gmail.com',
-      numero: '055996869492'
+      numero: '055996869492',
+      informacao: undefined
     },
     {
       id: 2,
       nome: 'Eneli Gutierrez Silva',
       categoria: enums.Categoria.FAMILIA,
       email: 'rochinhaitaqui@gmail.com',
-      numero: '055999347599'
+      numero: '055999347599',
+      informacao: undefined
     },
     {
       id: 3,
       nome: 'Victor dos Santos Pereira',
       categoria: enums.Categoria.TRABALHO,
       email: 'viro34@gmail.com',
-      numero: '055996869442'
+      numero: '055996869442',
+      informacao: undefined
     },
     {
       id: 4,
       nome: 'Andrews Mario Toledo',
       categoria: enums.Categoria.COMUM,
       email: 'AndrewsMario@gmail.com',
-      numero: '055996339492'
+      numero: '055996339492',
+      informacao: undefined
     }
   ]
 }
@@ -57,22 +60,27 @@ const contatosSlice = createSlice({
       }
       /* contatoParaEditar = action.payload */
     },
-    cadastrar: (state, action: PayloadAction<Contato>) => {
+    cadastrar: (state, action: PayloadAction<Omit<Contato, 'id'>>) => {
       const contatoJaExiste = state.itens.find(
         (contato) =>
-          contato.categoria.toLowerCase() ===
-          action.payload.categoria.toLowerCase()
+          contato.nome.toLowerCase() === action.payload.nome.toLowerCase()
       )
 
       if (contatoJaExiste) {
         alert('já existe um contato com esse nome')
       } else {
-        state.itens.push(action.payload)
+        const ultimoContato = state.itens[state.itens.length - 1]
+
+        const contatoNovo = {
+          ...action.payload,
+          id: ultimoContato ? ultimoContato.id + 1 : 1
+        }
+        state.itens.push(contatoNovo)
       }
     }
   }
 })
 
-export const { remover, editar } = contatosSlice.actions
+export const { remover, editar, cadastrar } = contatosSlice.actions
 
 export default contatosSlice.reducer

@@ -1,37 +1,77 @@
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 
-import { MainContainer, BotaoSalvar, Informacao } from '../../styles'
+import { MainContainer, BotaoSalvar, Titulo } from '../../styles'
 import { Campo } from '../../styles'
 import { Form, Opcoes } from './styles'
+import * as enums from '../../utils/enums/Contato'
+
+import { cadastrar } from '../../store/reducers/contatos'
 
 const Formulario = () => {
   const dispatch = useDispatch()
-  const [categoria, setCategoria] = useState('')
-  const [informacao, setInformação] = useState('')
+  const navigate = useNavigate()
+
+  const [nome, setNome] = useState('')
+  const [numero, setNumero] = useState('')
+  const [email, setEmail] = useState('')
+  const [categoria, setCategoria] = useState(enums.Categoria.COMUM)
+
+  const cadastrarContato = (evento: FormEvent) => {
+    evento.preventDefault()
+
+    dispatch(
+      cadastrar({
+        nome,
+        categoria,
+        numero,
+        email,
+        informacao: undefined
+      })
+    )
+    navigate('/')
+  }
 
   return (
     <MainContainer>
-      <Informacao>Novo contato</Informacao>
-      <Form>
+      <Titulo>Novo contato</Titulo>
+      <Form onSubmit={cadastrarContato}>
         <Campo
-          value={informacao}
-          onChange={(evento) => setInformação(evento.target.value)}
+          value={nome}
+          onChange={(evento) => setNome(evento.target.value)}
           as="textarea"
           placeholder="Nome do contato"
         />
-        <Campo as="textarea" placeholder="Numero do contato" />
-        <Campo as="textarea" placeholder="email do contato" />
+        <Campo
+          value={numero}
+          onChange={(evento) => setNumero(evento.target.value)}
+          as="textarea"
+          placeholder="Numero do contato"
+        />
+        <Campo
+          value={email}
+          onChange={(evento) => setEmail(evento.target.value)}
+          as="textarea"
+          placeholder="email do contato"
+        />
         <Opcoes>
           <p>Categoria</p>
-          <input name="prioridade" type="radio" id="familia" />{' '}
-          <label htmlFor="familia">familia</label>
-          <input name="prioridade" type="radio" id="trabalho" />{' '}
-          <label htmlFor="trabalho">trabalho</label>
-          <input name="prioridade" type="radio" id="comum" />{' '}
-          <label htmlFor="comum">comum</label>
-          <input name="prioridade" type="radio" id="favorito" />{' '}
-          <label htmlFor="favorito">favorito</label>
+          {Object.values(enums.Categoria).map((categoria) => (
+            <div key={categoria}>
+              <input
+                value={categoria}
+                name="Categoria"
+                type="radio"
+                onChange={(evento) =>
+                  setCategoria(evento.target.value as enums.Categoria)
+                }
+                id={categoria}
+                defaultChecked={categoria === enums.Categoria.COMUM}
+              />{' '}
+              <label htmlFor={categoria}>{categoria}</label>
+            </div>
+          ))}
         </Opcoes>
         <BotaoSalvar type="submit">Cadastrar</BotaoSalvar>
       </Form>
