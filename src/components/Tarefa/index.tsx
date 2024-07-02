@@ -42,6 +42,9 @@ const Contato = ({
 
   return (
     <S.Card>
+      <S.Tag parametro="categoria" categoria={categoria}>
+        {categoria}
+      </S.Tag>
       <S.Nome
         disabled={!estaEditando}
         value={nome}
@@ -56,9 +59,6 @@ const Contato = ({
         value={numero}
         onChange={(evento) => setNumero(evento.target.value)}
       />
-      <S.Tag parametro="categoria" categoria={categoria}>
-        {categoria}
-      </S.Tag>
       <S.BarraAcoes>
         {estaEditando ? (
           <>

@@ -40,29 +40,31 @@ export const Tag = styled.span<TagProps>`
   background-color: ${(props) => retornaCorDeFundo(props)};
   border-radius: 8px;
   margin-right: 16px;
-  display: inline-block;
+  display: block;
+  margin-bottom: 24px;
 `
 
 export const Nome = styled.textarea`
   color: #8b8b8b;
   font-size: 14px;
-  line-height: 24px;
+  line-height: 16px;
   font-family: 'Roboto Mono', monospace;
   width: 300px;
-  margin-bottom: 16px;
+  margin-bottom: 4px;
   margin-top: 16px;
   resize: none;
   border: none;
   background-color: transparent;
+  margin-left: 2px;
 `
 
 export const Email = styled.textarea`
   color: #8b8b8b;
   font-size: 14px;
-  line-height: 24px;
+  line-height: 16px;
   font-family: 'Roboto Mono', monospace;
   width: 300px;
-  margin-bottom: 16px;
+  margin-bottom: 4px;
   margin-top: 16px;
   resize: none;
   border: none;
@@ -72,10 +74,10 @@ export const Email = styled.textarea`
 export const Numero = styled.textarea`
   color: #8b8b8b;
   font-size: 14px;
-  line-height: 24px;
+  line-height: 16px;
   font-family: 'Roboto Mono', monospace;
   width: 300px;
-  margin-bottom: 16px;
+  margin-bottom: 4px;
   margin-top: 16px;
   resize: none;
   border: none;
