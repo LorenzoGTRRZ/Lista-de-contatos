@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 
-import Contato from '../../components/Tarefa'
+import Contato from '../../components/Contato'
 import { MainContainer, Titulo } from '../../styles'
 
 import { RootReducer } from '../../store'
